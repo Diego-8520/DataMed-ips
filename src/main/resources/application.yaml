@@ -1,34 +1,59 @@
+server:
+  port: ${SERVER_PORT:8080}
+
 spring:
   application:
-    name: RegistroAcademico
-  datasource:
-    url: jdbc:postgresql://ep-damp-firefly-au60mply-pooler.c-10.us-east-1.aws.neon.tech/neondb
-    username: neondb_owner
-    password: npg_tc03YsmZkFDV
-    driver-class-name: org.postgresql.Driver
-    jpa:
-      database-platform: org.hibernate.dialect.PostgreSQLDialect
-      hibernate:
-        ddl-auto: update
-      show-sql: true
+    name: ${SPRING_APP_NAME:api-medica-backend}
 
-#springdoc.swagger-ui.path=/swagger-ui.html
-#springdoc.swagger-ui.groups.enabled=true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://aws-1-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require}
+    username: ${DB_USER:postgres.ajgynaknrqfxfclwdqcr}
+    password: ${DB_PASSWORD:changeme}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    show-sql: ${JPA_SHOW_SQL:true}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      host: ${REDIS_HOST:rectified-downy-noise-61116.db.redis.io}
+      port: ${REDIS_PORT:14364}
+      username: ${REDIS_USER:default}
+      password: ${REDIS_PASSWORD:changeme}
+
+  cache:
+    type: redis
+
+app:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:changeme_default_jwt_secret_key_min_32_chars}
+      expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+
+  cache:
+    redis:
+      ttl-ms: ${REDIS_TTL_MS:900000}
+
 springdoc:
   swagger-ui:
-    path: /swagger-ui.html # URL para acceder a la UI
+    path: /swagger-ui.html
     groups:
       enabled: true
   api-docs:
-    path: /v3/api-docs # URL para la especificación JSON/YAML
+    path: /v3/api-docs
   version: 1.0.0
   info:
-    title: API Registro Academico
-    description: Documentación de la API para la gestión de estudiantes.
+    title: API DataMed IPS
+    description: Documentación de la API para la gestión clínica médica y EPS.
     version: 1.0.0
     contact:
-      name: Tu Nombre
-      email: tu.email@example.com
+      name: DataMed IPS
+      email: contacto@datamedips.com
     license:
       name: Apache 2.0
       url: http://springdoc.org
