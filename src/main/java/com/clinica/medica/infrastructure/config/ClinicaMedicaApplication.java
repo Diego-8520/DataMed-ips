@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.clinica.medica.infrastructure.adapters.output.persistence")
-@EntityScan("com.clinica.medica.infrastructure.adapters.output.persistence")
+@EntityScan("com.clinica.medica.infrastructure.adapters.output.persistence.entities")
 @ComponentScan("com.clinica.medica")
 public class ClinicaMedicaApplication {
 

@@ -49,7 +49,8 @@ src/main/java/com/clinica/medica/
 └── infrastructure/                 # Capa de Infraestructura (Adaptadores externos)
     ├── adapters/
     │   ├── input/rest/             # Controladores REST HTTP (Endpoints, DTOs, Mappers)
-    │   └── output/persistence/     # Adaptadores de JPA / PostgreSQL (Entidades JPA, Mappers)
+    │   └── output/persistence/     # Adaptadores y repositorios JPA / PostgreSQL
+    │       └── entities/           # Entidades de la base de datos
     ├── security/                   # Spring Security, Filtros JWT, UserDetailsService
     ├── config/                     # Configuración de OpenAPI (Swagger) y Redis Cache
     └── exceptions/                 # Controlador global de excepciones (GlobalExceptionHandler)

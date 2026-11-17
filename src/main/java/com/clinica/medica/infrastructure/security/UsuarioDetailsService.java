@@ -1,6 +1,6 @@
 package com.clinica.medica.infrastructure.security;
 
-import com.clinica.medica.infrastructure.adapters.output.persistence.UsuarioEntity;
+import com.clinica.medica.infrastructure.adapters.output.persistence.entities.UsuarioEntity;
 import com.clinica.medica.infrastructure.adapters.output.persistence.UsuarioJpaRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

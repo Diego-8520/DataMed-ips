@@ -1,7 +1,8 @@
 package com.clinica.medica.infrastructure.adapters.output.persistence;
 
 import com.clinica.medica.domain.model.Eps;
-import com.clinica.medica.domain.ports.output.EpsRepositoryPort;
+import com.clinica.medica.application.ports.output.EpsRepositoryPort;
+import com.clinica.medica.infrastructure.adapters.output.persistence.entities.EpsEntity;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;

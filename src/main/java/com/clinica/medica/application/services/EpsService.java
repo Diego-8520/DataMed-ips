@@ -2,8 +2,8 @@ package com.clinica.medica.application.services;
 
 import com.clinica.medica.domain.exceptions.RecursoNoEncontradoException;
 import com.clinica.medica.domain.model.Eps;
-import com.clinica.medica.domain.ports.input.EpsUseCase;
-import com.clinica.medica.domain.ports.output.EpsRepositoryPort;
+import com.clinica.medica.application.ports.input.EpsUseCase;
+import com.clinica.medica.application.ports.output.EpsRepositoryPort;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

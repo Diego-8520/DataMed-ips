@@ -1,6 +1,6 @@
 package com.clinica.medica.infrastructure.adapters.input.rest;
 
-import com.clinica.medica.domain.ports.input.EpsUseCase;
+import com.clinica.medica.application.ports.input.EpsUseCase;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.EpsRequest;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.EpsResponse;
 import com.clinica.medica.infrastructure.adapters.input.rest.mapper.EpsMapper;

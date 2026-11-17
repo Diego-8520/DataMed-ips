@@ -4,7 +4,7 @@ import com.clinica.medica.domain.model.Role;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.AuthResponse;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.LoginRequest;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.RegisterRequest;
-import com.clinica.medica.infrastructure.adapters.output.persistence.UsuarioEntity;
+import com.clinica.medica.infrastructure.adapters.output.persistence.entities.UsuarioEntity;
 import com.clinica.medica.infrastructure.adapters.output.persistence.UsuarioJpaRepository;
 import com.clinica.medica.infrastructure.security.JwtService;
 import jakarta.validation.Valid;

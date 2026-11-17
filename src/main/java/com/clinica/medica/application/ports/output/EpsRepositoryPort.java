@@ -1,4 +1,4 @@
-package com.clinica.medica.domain.ports.output;
+package com.clinica.medica.application.ports.output;
 
 import com.clinica.medica.domain.model.Eps;
 import java.util.List;
