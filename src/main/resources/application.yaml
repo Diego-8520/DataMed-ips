@@ -26,6 +26,13 @@ spring:
       username: ${REDIS_USER:default}
       password: ${REDIS_PASSWORD:changeme}
 
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
+
   cache:
     type: redis
 
@@ -38,6 +45,14 @@ app:
   cache:
     redis:
       ttl-ms: ${REDIS_TTL_MS:900000}
+
+mediamed_ips:
+  cron:
+    expression: "${MEDIAMED_IPS_CRON:0 0 6 * * *}"
+  scheduler:
+    mode: "${MEDIAMED_IPS_SCHEDULER_MODE:cron}"
+    fixed-delay-ms: ${MEDIAMED_IPS_FIXED_DELAY_MS:60000}
+    fixed-rate-ms: ${MEDIAMED_IPS_FIXED_RATE_MS:60000}
 
 springdoc:
   swagger-ui:

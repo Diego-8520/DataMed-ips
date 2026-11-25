@@ -1,8 +1,10 @@
 package com.clinica.medica.infrastructure.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.io.DecodingException;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,8 +42,12 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        return userDetails.getUsername().equals(extractUsername(token))
-                && !isTokenExpired(token);
+        try {
+            return userDetails.getUsername().equals(extractUsername(token))
+                    && !isTokenExpired(token);
+        } catch (ExpiredJwtException ex) {
+            return false;
+        }
     }
 
     private boolean isTokenExpired(String token) {
@@ -57,7 +63,7 @@ public class JwtService {
         byte[] keyBytes;
         try {
             keyBytes = Decoders.BASE64.decode(secret);
-        } catch (IllegalArgumentException ex) {
+        } catch (DecodingException | IllegalArgumentException ex) {
             keyBytes = secret.getBytes(java.nio.charset.StandardCharsets.UTF_8);
         }
         return Keys.hmacShaKeyFor(keyBytes);

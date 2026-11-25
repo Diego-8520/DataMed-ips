@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface EpsJpaRepository extends JpaRepository<EpsEntity, Long> {
     List<EpsEntity> findAllByActivoTrue();
+    long countByActivoTrue();
 }

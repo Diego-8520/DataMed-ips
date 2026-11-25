@@ -26,6 +26,11 @@ public class EpsPersistenceAdapter implements EpsRepositoryPort {
     }
 
     @Override
+    public long contarActivas() {
+        return repository.countByActivoTrue();
+    }
+
+    @Override
     public Optional<Eps> buscarPorId(Long id) {
         return repository.findById(id).map(this::toDomain);
     }

@@ -1,11 +1,9 @@
 package com.clinica.medica.infrastructure.adapters.input.rest;
 
-import com.clinica.medica.domain.model.Role;
+import com.clinica.medica.application.ports.input.RegistrarUsuarioUseCase;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.AuthResponse;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.LoginRequest;
 import com.clinica.medica.infrastructure.adapters.input.rest.dto.RegisterRequest;
-import com.clinica.medica.infrastructure.adapters.output.persistence.entities.UsuarioEntity;
-import com.clinica.medica.infrastructure.adapters.output.persistence.UsuarioJpaRepository;
 import com.clinica.medica.infrastructure.security.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,19 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
-    private final UsuarioJpaRepository repository;
+    private final RegistrarUsuarioUseCase registrarUsuario;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtService jwtService;
 
     public AuthController(
-            UsuarioJpaRepository repository,
+            RegistrarUsuarioUseCase registrarUsuario,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
             UserDetailsService userDetailsService,
             JwtService jwtService) {
-        this.repository = repository;
+        this.registrarUsuario = registrarUsuario;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
@@ -45,12 +43,7 @@ public class AuthController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public AuthResponse register(@Valid @RequestBody RegisterRequest request) {
-        if (repository.existsByEmail(request.email())) {
-            throw new IllegalArgumentException("El correo ya está registrado");
-        }
-        Role role = Role.PACIENTE;
-        repository.save(new UsuarioEntity(
-                null, request.email(), passwordEncoder.encode(request.password()), role, true));
+        registrarUsuario.registrar(request.email(), passwordEncoder.encode(request.password()));
         UserDetails user = userDetailsService.loadUserByUsername(request.email());
         return new AuthResponse(jwtService.generateToken(user));
     }

@@ -7,5 +7,6 @@ import java.util.Optional;
 public interface EpsRepositoryPort {
     Eps guardar(Eps eps);
     List<Eps> listarActivas();
+    long contarActivas();
     Optional<Eps> buscarPorId(Long id);
 }
